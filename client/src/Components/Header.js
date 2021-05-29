@@ -4,8 +4,7 @@ import Navbar from 'react-bootstrap/Navbar'
 
 const Header = () => {
     return (
-        <Navbar bg="dark" variant="dark" className="mb-4">
-        <Container>
+        <Navbar bg="dark" variant="dark" className="mb-4">        
           <Navbar.Brand href="#home">
             <img
               alt=""
@@ -16,8 +15,7 @@ const Header = () => {
               color="white"
             />{' '}
           UK News
-          </Navbar.Brand>
-        </Container>
+          </Navbar.Brand>        
       </Navbar>    
     )
 }
