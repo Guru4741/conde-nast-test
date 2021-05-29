@@ -7,6 +7,7 @@ import Header from './Components/Header';
 import Footer from './Components/Footer';
 import Articles from './Components/Articles';
 import ArticleDetails from './Components/ArticleDetails';
+import Search from './Components/Search';
 
 function App() {
 
@@ -16,6 +17,16 @@ function App() {
   const retrieveArticles = async (query = '') => {
     const response = await axios.get(`http://localhost:9999/${query}`);    
     return response.data.articles;
+  }
+
+  const submitSearchHandler = (article) => {    
+      setLoading(true);
+      const getAllArticles = async (article) => {
+        const allArticles = await retrieveArticles(article);  
+        if(allArticles) setArticles(allArticles);        
+        setLoading(false);       
+      }
+      getAllArticles(article);
   }
 
   useEffect(() => {
@@ -33,6 +44,7 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/">
+          <Search submitSearchHandler={submitSearchHandler}/>
             {
               loading ? 
               <Spinner animation="border" role="status" variant="primary" />
