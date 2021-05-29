@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row'
+import Sort from './Sort';
 
 const Search = ({submitSearchHandler}) => {
 
@@ -12,6 +13,10 @@ const Search = ({submitSearchHandler}) => {
     const searchedArticleHandler = (e) => {
         setSearchedArticle(e.target.value);
       }
+
+    const sortByHandler = (sortBy) => {        
+        setSortArticles(sortBy);
+    }      
       
     const submitHandler = (e) => {
         e.preventDefault();        
@@ -27,8 +32,8 @@ const Search = ({submitSearchHandler}) => {
                             <Form.Control type="text" placeholder="Search Article By Name" onChange={searchedArticleHandler} value={searchedArticle}/>
                             </Col>
                         </Form.Group>                          
-                                                                       
-                        <Form.Row>
+                            <Sort sortByHandler={sortByHandler}/>                                                                            
+                        <Form.Row className="justify-content-center">
                         <Button className="justify-content-start mb-4" variant="primary" type="submit">
                             Search Articles
                         </Button>

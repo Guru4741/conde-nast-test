@@ -13,20 +13,28 @@ function App() {
 
   const [loading, setLoading] = useState(true);
   const [articles, setArticles] = useState([]);
+  const [query, setQuery] = useState('latest');
 
   const retrieveArticles = async (query = '') => {
     const response = await axios.get(`http://localhost:9999/${query}`);    
     return response.data.articles;
   }
 
-  const submitSearchHandler = (article) => {    
+  const submitSearchHandler = (article, sort) => {    
+    let filterBy;    
+    if(sort !== "") {
+      filterBy = `${article}?sort=${sort}`
+    } else {
+      filterBy = article;
+    }
       setLoading(true);
-      const getAllArticles = async (article) => {
-        const allArticles = await retrieveArticles(article);  
-        if(allArticles) setArticles(allArticles);        
+      const getAllArticles = async (filterBy, article) => {
+        const allArticles = await retrieveArticles(filterBy);  
+        if(allArticles) setArticles(allArticles);
+        setQuery(article)        
         setLoading(false);       
       }
-      getAllArticles(article);
+      getAllArticles(filterBy, article);
   }
 
   useEffect(() => {
@@ -48,7 +56,7 @@ function App() {
             {
               loading ? 
               <Spinner animation="border" role="status" variant="primary" />
-              : <Articles articles={articles}/>
+              : <Articles articles={articles} query={query}/>
             }
           </Route>
           <Route path="/:article/:title">        
