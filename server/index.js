@@ -9,6 +9,7 @@ const PORT = process.env.PORT || 9999;
 app.use(cors());
 app.use(morgan('combined'));
 
+// Route for getting latest news articles to show on initial load
 app.get('/', (req, res) => {
     const getArticles = async () => {
         try {
@@ -21,6 +22,7 @@ app.get('/', (req, res) => {
       getArticles();
     });
 
+// Route for getting searched articles via keyword or via sorting  
 app.get('/:title', (req, res) => {
     const title = req.params.title;
     const sort = req.query.sort;

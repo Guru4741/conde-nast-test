@@ -7,7 +7,8 @@ const Article = ({article, query}) => {
     const path = query ? query : 'latest';
 
     return (
-        <ListGroup.Item>                                        
+        // Each article is linked to a href with url as first 20 characters of the article's title 
+        <ListGroup.Item>                                                    
             <Link to={`/${path}/${article.title.slice(0,20)}`}>
                 {article.title}            
             </Link>                             

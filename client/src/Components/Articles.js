@@ -9,7 +9,7 @@ const Articles = ({articles, query}) => {
     })    
     return (
         <div className="articles">  
-            <p mb-3>
+            <p mb-3>            
             {query === 'latest' ? 'Latest Articles' : `${query} Articles`}          
             </p>
             <ListGroup>

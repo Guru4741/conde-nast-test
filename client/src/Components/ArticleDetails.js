@@ -7,7 +7,9 @@ const ArticleDetails = ({articles}) => {
     
     const {title} = useParams();
 
-    const article = articles.filter((article) => {     
+    const article = articles.filter((article) => {  
+        // Filters searched article by mathching first 20 characters of each article's title
+        // with the title present in URL
         return article.title.slice(0,20).trim() === title.trim()
     })
     
